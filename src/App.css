@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+
+main {
+  min-height: 100vh;
+}
+
+a {
+  --bs-link-color-rgb: 0, 122, 255;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-color: #fff;
+  --bs-nav-pills-link-active-bg: #007aff;
+}
+
+.nav {
+  --bs-nav-link-padding-y: 0.6rem;
+}
+
+.request-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+table th {
+  width: auto !important;
+}
+
+.card > .progress {
+  height: 0.1875rem;
+  background: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.list .card:hover {
+  background-color: var(--bs-tertiary-bg);
+  transform: scale(1.025);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+}
+
+.signin {
+  background: rgb(214, 242, 255);
+  background: radial-gradient(circle, rgba(214, 242, 255, 1) 31%, rgba(237, 250, 255, 1) 60%);
+}
+ 
