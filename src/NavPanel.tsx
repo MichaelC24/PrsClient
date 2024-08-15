@@ -5,8 +5,8 @@ function NavPanel() {
     <>
       
         <div>
-          <div className="border-1 vh-100 bg-body-secondary " id="menu">
-            <div className="btn-group dropend">
+          <div className="border-5 vh-100 bg-body-secondary " id="menu">
+            <div className="btn-group dropend bg-body-secondary">
               <button type="button" className="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="text-primary fw-semibold">
                   <svg className="bi m-2" width="32" height="32" fill="currentColor">

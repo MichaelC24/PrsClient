@@ -1,5 +1,6 @@
 import { Vendor } from "./Vendors";
 import { NavLink } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"
 
 
 interface VendorCardProps {
@@ -8,16 +9,8 @@ interface VendorCardProps {
 
 function VendorCard({vendor} : VendorCardProps) {
     return (
-        <div>
-      <section className="container-fluid">
-        <header className="border-bottom border-1 border-success-subtle d-flex justify-content-between">
-          <h2 className="ms-5 mt-3">Vendors</h2>
-          <NavLink to="/vendors/create" className="btn btn-primary m-3">
-            Create A Vendor
-          </NavLink>
-        </header>
-        <section className="p-5">
-          <section className="border border-1 p-3 bg-body-secondary rounded d-flex flex-wrap">
+        
+       
             <div className="card mt-" style={{ width: "18rem" }}>
               <div className="card-body">
                 <div className=" d-flex justify-content-between  ">
@@ -54,11 +47,8 @@ function VendorCard({vendor} : VendorCardProps) {
                 </section>
               </div>
             </div>
-          </section>
-        </section>
-      </section>
-    </div>
-
+        
+   
 
     )
     

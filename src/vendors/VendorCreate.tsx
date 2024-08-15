@@ -1,8 +1,11 @@
 import VendorForm from "./VendorForm";
 
-function CreateVendor() {
+function VendorCreate() {
   return (
+    <>
+    
     <VendorForm />
+    </>
   );
 }
-export default CreateVendor;
+export default VendorCreate;
