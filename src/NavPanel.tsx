@@ -68,12 +68,12 @@ function NavPanel() {
                   </NavLink>
                 </li>
                 <li>
-                  <a className="nav-link" href="user.html">
+                  <NavLink className="nav-link" to="/users">
                     <svg className="bi me-2" width="20" height="20" fill="currentColor">
                       <use xlinkHref="./node_modules/bootstrap-icons/bootstrap-icons.svg#people" />
                     </svg>
                     Users
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
               

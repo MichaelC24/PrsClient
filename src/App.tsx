@@ -1,13 +1,16 @@
-// import "bootstrap/dist/css/bootstrap.css";
-// import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
 import Header from "./Header.tsx";
 import NavPanel from "./NavPanel.tsx";
 import VendorsPage from "./vendors/VendorsList.tsx";
-import { NavLink } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VendorCreate from "./vendors/VendorCreate.tsx";
 import SignIn from "./SignIn.tsx";
 import VendorEdit from "./vendors/VendorEdit.tsx";
+import UsersPage from "./users/UsersPage.tsx";
+import UserForm from "./users/UserForm.tsx";
+import UserCreate from "./users/UserCreate.tsx";
+
 
 function App() {
   return (
@@ -22,7 +25,9 @@ function App() {
               <Route path="vendors" element={<VendorsPage />} />
               <Route path="/vendor/create" element={<VendorCreate />} />
               <Route path="Signin" element={<SignIn/>} />
-              <Route path="vendors/edit" element={<VendorEdit/>}/>
+              <Route path={`vendor/edit/:id`} element={<VendorEdit/>}/>
+              <Route path="users" element={<UsersPage/>}/>
+              <Route path="user/create" element={<UserCreate/>}/>
             </Routes>
 
             {/* <h2 className="ms-5 mt-3 ">Purchase Request System</h2>

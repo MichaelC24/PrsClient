@@ -1,5 +1,5 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Vendor } from "./Vendors";
@@ -29,18 +29,17 @@ function VendorForm() {
       if (vendor.isNew) {
         await vendorAPI.post(vendor);
       } else {
-        await vendorAPI.post(vendor);
+        await vendorAPI.put(vendor);
       }
       navigate("/vendors");
     } catch (error: any) {
-      console.log("error");
+      console.log(error);
     }
   };
 
   return (
     <div className="container-fluid">
-      <h2 className="ms-5 mt-3">New Vendor</h2>
-      <hr />
+      
       <div>
         <form className="row g-md-4 needs-validation is-invalid" onSubmit={handleSubmit(save)} noValidate>
           <div className="col-md-3">
@@ -55,6 +54,7 @@ function VendorForm() {
               })}
               className={`form-control ${errors.code && "is-invalid"} `}
               placeholder="Enter short vendor code"
+              
             />
             <div className="invalid-feedback ">{errors?.code?.message}</div>
           </div>
@@ -141,9 +141,9 @@ function VendorForm() {
             <input type="text" {...register("email")}className="form-control" placeholder="Enter Email Address" id="email" />
           </div>
           <div className=" offset-7">
-            <button type="reset"  className="btn btn-outline-primary me-2 form-check">
+            <NavLink to="/vendors"  className="btn btn-outline-primary me-2 form-check">
               Cancel
-            </button>
+            </NavLink>
             <button  className="btn btn-primary form-check">
               <svg className="me-2" width={15} height={23} fill="currentColor">
                 <use xlinkHref="../node_modules/bootstrap-icons/bootstrap-icons.svg#save" />

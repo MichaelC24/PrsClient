@@ -1,5 +1,5 @@
 export class Vendor {
-  id: number | undefined;
+  id: number | undefined = undefined;
   code = "";
   name = "";
   address= "";

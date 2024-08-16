@@ -26,10 +26,21 @@ export async function checkStatus(response: Response) {
   throw new Error(errorMessage);
 }
 
-export function parseJSON(response: Response) {
-  return response.json();
-}
+export async function parseJSON(response: Response) {
+  const text = await response.text();
 
+  if (!text) {
+    
+    return null;
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    console.error("Failed to parse JSON:", error);
+    throw new Error("Invalid JSON response");
+  }
+}
 // eslint-disable-next-line
 export function delay(ms: number) {
   return function (x: any): Promise<any> {
