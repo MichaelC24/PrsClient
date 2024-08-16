@@ -1,12 +1,24 @@
 import { Vendor } from "./Vendors";
 import { BASE_URL, checkStatus, delay, parseJSON } from "../utility/fetchUtilities";
 
-const url = `${BASE_URL}/Vendors`
+const url = `${BASE_URL}/Vendors`;
 
 export const vendorAPI = {
-    list(): Promise<Vendor[]> {
-        return fetch(url).then(checkStatus).then(delay(200)).then(parseJSON);
-    }
-
-
-}
+  list(): Promise<Vendor[]> {
+    return fetch(url).then(checkStatus).then(delay(200)).then(parseJSON);
+  },
+  find(id: number): Promise<Vendor> {
+    return fetch(`${url}/${id}`).then(checkStatus).then(parseJSON);
+  },
+  post(vendor: Vendor) {
+    return fetch(`${url}`, {
+      method: "POST",
+      body: JSON.stringify(vendor),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(checkStatus)
+      .then(parseJSON);
+  },
+};

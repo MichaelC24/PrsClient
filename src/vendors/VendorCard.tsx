@@ -16,10 +16,10 @@ function VendorCard({vendor} : VendorCardProps) {
                 <div className=" d-flex justify-content-between  ">
                   <div>
                     <h5 className="card-title">{vendor.name}</h5>
-                    <span className="badge text-bg-secondary">New</span>
+                    <span className="badge text-bg-secondary">{vendor.code}</span>
                   </div>
                   <div className="btn-group dropend">
-                    <button type="button" className="btn dropdown" data-bs-toggle="dropdown" aria-expanded="true">
+                    <button type="button" className="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                       <span className="text-primary fw-semibold ">
                         <svg className="bi m-2" width={30} height={20} fill="currentColor">
                           <use xlinkHref="../node_modules/bootstrap-icons/bootstrap-icons.svg#three-dots-vertical" />

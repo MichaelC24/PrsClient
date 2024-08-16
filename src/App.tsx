@@ -1,5 +1,5 @@
-import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
+// import "bootstrap/dist/css/bootstrap.css";
+// import "./App.css";
 import Header from "./Header.tsx";
 import NavPanel from "./NavPanel.tsx";
 import VendorsPage from "./vendors/VendorsList.tsx";
@@ -20,7 +20,7 @@ function App() {
             <Routes>
               <Route path="/" />
               <Route path="vendors" element={<VendorsPage />} />
-              <Route path="vendors/create" element={<VendorCreate />} />
+              <Route path="/vendor/create" element={<VendorCreate />} />
               <Route path="Signin" element={<SignIn/>} />
               <Route path="vendors/edit" element={<VendorEdit/>}/>
             </Routes>

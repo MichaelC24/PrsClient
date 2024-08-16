@@ -4,8 +4,11 @@ function NavPanel() {
   return (
     <>
       
-        <div>
-          <div className="border-5 vh-100 bg-body-secondary " id="menu">
+        
+      <nav
+        className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-end min-vh-100 position-sticky"
+        
+      >
             <div className="btn-group dropend bg-body-secondary">
               <button type="button" className="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="text-primary fw-semibold">
@@ -38,7 +41,6 @@ function NavPanel() {
                 </li>
               </ul>
             </div>
-            <nav>
               <ul className="nav nav-pills  flex-column container-fluid ps-4">
                 <li className="mb-2 text-secondary">Purchases</li>
                 <li>
@@ -74,10 +76,11 @@ function NavPanel() {
                   </a>
                 </li>
               </ul>
+              
             </nav>
-          </div>
           
-        </div>
+          
+        
      
     </>
   );
