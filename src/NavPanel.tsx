@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import bootstrapIcons from "bootstrap-icons/bootstrap-icons.svg";
 
 function NavPanel() {
   return (
@@ -13,7 +14,7 @@ function NavPanel() {
               <button type="button" className="btn dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="text-primary fw-semibold">
                   <svg className="bi m-2" width="32" height="32" fill="currentColor">
-                    <use xlinkHref="./node_modules/bootstrap-icons/bootstrap-icons.svg#plus-circle-fill" />
+                    <use xlinkHref={`${bootstrapIcons}#plus-circle-fill`} />
                   </svg>
                   Create New
                 </span>
@@ -44,25 +45,25 @@ function NavPanel() {
               <ul className="nav nav-pills  flex-column container-fluid ps-4">
                 <li className="mb-2 text-secondary">Purchases</li>
                 <li>
-                  <a className="nav-link d-flex" aria-current="page" href="requests.html">
+                  <NavLink className="nav-link d-flex" aria-current="page" to="/request">
                     <svg className="bi me-2" width="20" height="20" fill="currentColor">
-                      <use xlinkHref="./node_modules/bootstrap-icons/bootstrap-icons.svg#cart" />
+                      <use xlinkHref={`${bootstrapIcons}#cart`} />
                     </svg>
                     Requests
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="nav-link" href="products">
+                  <NavLink className="nav-link" to="/products">
                     <svg className="bi me-2" width="20" height="20" fill="currentColor">
-                      <use xlinkHref="./node_modules/bootstrap-icons/bootstrap-icons.svg#grid" />
+                      <use xlinkHref={`${bootstrapIcons}#grid`} />
                     </svg>
                     Products
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/vendors" className="nav-link" >
                     <svg className="bi me-2" width="20" height="20" fill="currentColor">
-                      <use xlinkHref="./node_modules/bootstrap-icons/bootstrap-icons.svg#building" />
+                      <use xlinkHref={`${bootstrapIcons}#building`} />
                     </svg>
                     Vendors
                   </NavLink>
@@ -70,7 +71,7 @@ function NavPanel() {
                 <li>
                   <NavLink className="nav-link" to="/users">
                     <svg className="bi me-2" width="20" height="20" fill="currentColor">
-                      <use xlinkHref="./node_modules/bootstrap-icons/bootstrap-icons.svg#people" />
+                      <use xlinkHref={`${bootstrapIcons}#people`} />
                     </svg>
                     Users
                   </NavLink>

@@ -27,7 +27,7 @@ function VendorsPage() {
   }, []);
 
   async function remove(vendor: Vendor) {
-    if (confirm("Are you sure you want to delete this Movie?")) {
+    if (confirm("Are you sure you want to delete this Vendor?")) {
       if (vendor.id) {
         await vendorAPI.delete(vendor.id);
         let updatedVendors = vendors.filter((v) => v.id !== vendor.id);

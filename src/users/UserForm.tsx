@@ -1,11 +1,11 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { User } from "./Users";
 import { userAPI } from "./UsersAPI";
 
-function VendorForm() {
+function UserForm() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const userId = Number(id);
@@ -140,22 +140,23 @@ function VendorForm() {
             </label>
             <br />
             <div className="form-check form-check-inline">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox" className="form-check-input" {...register("isReviewer")} />
               <label  className="form-check-label">
                 Reviewer
               </label>
             </div>
             <div className="form-check form-check-inline">
-              <input type="checkbox" className="form-check-input" />
+              <input type="checkbox" className="form-check-input"  {...register("isAdmin")} />
               <label  className="form-check-label">
                 Admin
               </label>
+
             </div>
           </div>
           <div className=" offset-7">
-            <button type="reset" className="btn btn-outline-primary me-2 form-check">
+            <NavLink to="/users" className="btn btn-outline-primary me-2 form-check">
               Cancel
-            </button>
+            </NavLink>
             <button className="btn btn-primary form-check">
               <svg className="me-2" width={15} height={23} fill="currentColor">
                 <use xlinkHref="../node_modules/bootstrap-icons/bootstrap-icons.svg#save" />
@@ -170,4 +171,4 @@ function VendorForm() {
   );
 }
 
-export default VendorForm;
+export default UserForm;

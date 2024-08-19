@@ -10,6 +10,15 @@ import VendorEdit from "./vendors/VendorEdit.tsx";
 import UsersPage from "./users/UsersPage.tsx";
 import UserForm from "./users/UserForm.tsx";
 import UserCreate from "./users/UserCreate.tsx";
+import UserEdit from "./users/UserEdit.tsx";
+import ProductsPage from "./products/ProductsList.tsx";
+import ProductCreate from "./products/ProductCreate.tsx";
+import ProductEdit from "./products/ProductEdit.tsx";
+import RequestsPage from "./requests/RequestList.tsx";
+import RequestForm from "./requests/RequestForm.tsx";
+import RequestEdit from "./requests/RequestEdit.tsx";
+import RequestCreate from "./requests/RequestCreate.tsx";
+import RequestDetails from "./requests/RequestDetails.tsx";
 
 
 function App() {
@@ -28,6 +37,14 @@ function App() {
               <Route path={`vendor/edit/:id`} element={<VendorEdit/>}/>
               <Route path="users" element={<UsersPage/>}/>
               <Route path="user/create" element={<UserCreate/>}/>
+              <Route path="user/edit/:id" element={<UserEdit/>}/>
+              <Route path="products" element={<ProductsPage/>}/>
+              <Route path="products/create" element={<ProductCreate/>} />
+              <Route path="product/edit/:id" element={<ProductEdit/>} />
+              <Route path="request" element={<RequestsPage/>}/>
+              <Route path="requests/create" element={<RequestCreate/>}/>
+              <Route path="request/edit/:id" element={<RequestEdit/>}/>
+              <Route path="request/detail/:id" element={<RequestDetails/>}/>
             </Routes>
 
             {/* <h2 className="ms-5 mt-3 ">Purchase Request System</h2>
