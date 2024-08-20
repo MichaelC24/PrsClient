@@ -11,9 +11,9 @@ import { productAPI } from "../products/ProductsAPI";
 
 function RequestLinesForm() {
   const navigate = useNavigate();
-//   let { requestId: requestLinesIdAsString } = useParams<{ requestLinesId: string }>();
-  let { id: requestIdAsString } = useParams<{ id: string }>();
-
+  //   let { requestId: requestLinesIdAsString } = useParams<{ requestLinesId: string }>();
+  let { id: requestIdAsString, lineId: lineIdAsString } = useParams<{ id: string, lineId:string }>();
+  let requestLineId = Number(lineIdAsString);
   let requestId = Number(requestIdAsString);
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -26,13 +26,14 @@ function RequestLinesForm() {
       let productsData = await productAPI.list();
       setProducts(productsData);
 
-    //   if (!requestId) {
-        let newRequestLines = new RequestLines({ requestId: requestId });
-        return Promise.resolve(newRequestLines);
-    //  } 
-     // else {
-    //     return await requestLinesAPI.find(requestId);
-    //   }
+        if (!requestId) {
+      let newRequestLines = new RequestLines({ requestId: requestId });
+      return Promise.resolve(newRequestLines);
+       }
+      else {
+         return await requestLinesAPI.find(requestLineId);
+          
+        }
     },
   });
 
@@ -43,8 +44,8 @@ function RequestLinesForm() {
       } else {
         await requestLinesAPI.put(requestLines);
       }
-    //   navigate(`/request/detail/${requestId}?lastUpdated=${Date.now()}`);
-    // navigate
+      //   navigate(`/request/detail/${requestId}?lastUpdated=${Date.now()}`);
+      navigate(`/request/detail/${requestId}`)
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -54,15 +55,14 @@ function RequestLinesForm() {
     <form className="w-50" onSubmit={handleSubmit(save)} noValidate>
       <div className="mb-3">
         <label className="form-label" htmlFor="product">
-          name
+          Name
         </label>
         <select
           {...register("productId", {
             required: "Product is required",
           })}
           className={`form-select ${errors.productId && "is-invalid"} `}
-          id="product"
-        >
+          id="product">
           <option value="">Select...</option>
           {products.map((product) => (
             <option key={product.id} value={product.id}>
@@ -79,20 +79,18 @@ function RequestLinesForm() {
         </label>
         <input
           {...register("quantity", {
-            required: "Role is required",
+            required: "quantity is required",
           })}
           className="form-control"
           type="text"
-          id="role"
+          id="quantity"
         />
+      <div className="invalid-feedback">{errors?.quantity?.message}</div>
       </div>
 
       <div className="d-flex gap-2">
         <button className="btn btn-outline-primary">Save</button>
-        <Link
-          className="btn btn-outline-secondary"
-          to={`/requests/detail/${requestId}`}
-        >
+        <Link className="btn btn-outline-secondary" to={`/request/detail/${requestId}`}>
           Cancel
         </Link>
       </div>

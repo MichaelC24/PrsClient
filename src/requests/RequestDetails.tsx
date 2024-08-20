@@ -87,7 +87,7 @@ function RequestDetails() {
         </div>
       </div>
       <div>
-        <RequestLinesTable request={request} OnRemove={removeRequestLine}  />
+        <RequestLinesTable  request={request} onRemove={removeRequestLine}  />
       </div>
 
     </>

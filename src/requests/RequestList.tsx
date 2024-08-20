@@ -47,7 +47,7 @@ function RequestList() {
         </section>
       )}
       <header className=" mt-3 ms-4 d-flex justify-content-between">
-        <h3>Requests</h3>
+        <h3 >Requests</h3>
         <Link to={"/requests/create"} className="btn btn-outline-secondary">
           + Add Request
         </Link>

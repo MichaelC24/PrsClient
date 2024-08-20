@@ -5,7 +5,7 @@ import NavPanel from "./NavPanel.tsx";
 import VendorsPage from "./vendors/VendorsList.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VendorCreate from "./vendors/VendorCreate.tsx";
-import SignIn from "./SignIn.tsx";
+import SignIn from "./signIn/SignIn.tsx";
 import VendorEdit from "./vendors/VendorEdit.tsx";
 import UsersPage from "./users/UsersPage.tsx";
 import UserCreate from "./users/UserCreate.tsx";
@@ -18,6 +18,8 @@ import RequestEdit from "./requests/RequestEdit.tsx";
 import RequestCreate from "./requests/RequestCreate.tsx";
 import RequestDetails from "./requests/RequestDetails.tsx";
 import RequestLinesForm from "./requestLines/RequestLineForm.tsx";
+import RequestLineCreate from "./requestLines/RequestLineCreate.tsx";
+import RequestLineEdit from "./requestLines/RequestLineEdit.tsx";
 
 function App() {
   return (
@@ -43,7 +45,8 @@ function App() {
               <Route path="requests/create" element={<RequestCreate />} />
               <Route path="request/edit/:id" element={<RequestEdit />} />
               <Route path="/request/detail/:id" element={<RequestDetails />} />
-              <Route path="/request/detail/:id/requestLines/create" element={<RequestLinesForm/>} />
+              <Route path="/request/detail/:id/requestLines/create" element={<RequestLineCreate/>} />
+              <Route path="/request/detail/:id/requestLine/edit/:lineId" element={<RequestLineEdit/>}/>
             </Routes>
 
             {/* <h2 className="ms-5 mt-3 ">Purchase Request System</h2>

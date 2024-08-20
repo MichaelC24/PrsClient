@@ -1,5 +1,5 @@
 import { Request } from "./Requests";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Dropdown } from "react-bootstrap";
 import "../App.css";
@@ -59,6 +59,9 @@ function RequestCard({ request, onRemove }: RequestCardProps) {
                 <NavLink to={`/request/edit/${request.id}`} className="dropdown-item">
                   Edit
                 </NavLink>
+              </li>
+              <li>
+                <Link to={`/request/detail/${request.id}`} className="dropdown-item" >Details</Link>
               </li>
               <li>
                 <a

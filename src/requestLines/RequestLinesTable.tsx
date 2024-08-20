@@ -1,14 +1,16 @@
 import { RequestLines } from "./RequestLines";
 import { Request}  from "../requests/Requests";
 import { Link, NavLink } from "react-router-dom";
+import { SyntheticEvent } from "react";
+import bootstrapIcons from "bootstrap-icons/bootstrap-icons.svg";
 
 interface RequestLinesInterface {
   request: Request;
-  OnRemove: (requestLines: RequestLines) => void;
+  onRemove: (requestLines: RequestLines) => void;
 }
 
 
-function RequestLinesTable({request, OnRemove} : RequestLinesInterface) {
+function RequestLinesTable({request, onRemove} : RequestLinesInterface) {
 
 
   return (
@@ -32,12 +34,32 @@ function RequestLinesTable({request, OnRemove} : RequestLinesInterface) {
     </thead>
     <tbody>
         
-            {request.requestLines?.map((request) => (
+            {request.requestLines?.map((requestline) => (
               <tr>
-                <td>{request.product?.name}</td>
-                <td>{request.product?.price}</td>
-                <td>{request.quantity}</td>
-                <td></td>
+                <td>{requestline.product?.name}</td>
+                <td>{requestline.product?.price}</td>
+                <td>{requestline.quantity}</td>
+                <td>{request.total}</td>
+                <td>
+                <Link to={`requestLine/edit/${requestline.id}`} >
+                <svg className="bi m-2" width="15" height="15" fill="currentColor">
+                    <use xlinkHref={`${bootstrapIcons}#pencil`} />
+                  </svg>
+                </Link>
+              
+              
+              
+                <a
+                  className=""
+                  onClick={(event: SyntheticEvent) => {
+                    event.preventDefault();
+                    onRemove(requestline);
+                  }}>
+                  <svg className="bi m-2" width="15" height="15" fill="currentColor">
+                    <use xlinkHref={`${bootstrapIcons}#trash`} />
+                  </svg>
+                </a>
+              </td>
               </tr>
             ))
             
