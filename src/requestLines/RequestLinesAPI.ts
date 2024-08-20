@@ -1,16 +1,17 @@
-import { Request } from "./Requests";
+
 import { BASE_URL, checkStatus, delay, parseJSON } from "../utility/fetchUtilities";
+import { RequestLines } from "./RequestLines";
 
-const url = `${BASE_URL}/Requests`;
+const url = `${BASE_URL}/RequestLines`;
 
-export const requestAPI = {
-  list(): Promise<Request[]> {
+export const requestLinesAPI = {
+  list(): Promise<RequestLines[]> {
     return fetch(url).then(checkStatus).then(delay(200)).then(parseJSON);
   },
-  find(id: number): Promise<Request> {
+  find(id: number): Promise<RequestLines> {
     return fetch(`${url}/${id}`).then(checkStatus).then(parseJSON);
   },
-  post(request: Request) {
+  post(request: RequestLines) {
     return fetch(`${url}`, {
       method: "POST",
       body: JSON.stringify(request),
@@ -21,7 +22,7 @@ export const requestAPI = {
       .then(checkStatus)
       .then(parseJSON);
   },
-  put(request: Request) {
+  put(request: RequestLines) {
     return fetch(`${url}/${request.id}`, {
       method: "PUT",
       body: JSON.stringify(request),

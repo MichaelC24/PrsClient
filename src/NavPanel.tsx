@@ -7,7 +7,7 @@ function NavPanel() {
       
         
       <nav
-        className="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-end min-vh-100 position-sticky"
+        className="d-flex flex-column flex-shrink-0 p-3 bg-body-secondary border-end min-vh-100 position-sticky"
         
       >
             <div className="btn-group dropend bg-body-secondary">

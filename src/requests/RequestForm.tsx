@@ -36,10 +36,16 @@ function RequestForm() {
       let savedRequest;
       if (request.isNew) {
         savedRequest = await requestAPI.post(request);
+        navigate(`/request/detail/${savedRequest.id}`);
       } else {
+        
         savedRequest = await requestAPI.put(request);
-      }
-      navigate(`/request/detail/${savedRequest.id}`);
+        navigate(`/request/detail/${requestId}`)
+        
+
+      } 
+      console.log(savedRequest);
+      
     } catch (error: any) {
       console.log(error);
     }
