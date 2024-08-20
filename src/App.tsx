@@ -5,7 +5,7 @@ import NavPanel from "./NavPanel.tsx";
 import VendorsPage from "./vendors/VendorsList.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VendorCreate from "./vendors/VendorCreate.tsx";
-import SignIn from "./signIn/SignIn.tsx";
+import SignIn from "./users/SignIn.tsx";
 import VendorEdit from "./vendors/VendorEdit.tsx";
 import UsersPage from "./users/UsersPage.tsx";
 import UserCreate from "./users/UserCreate.tsx";
@@ -20,6 +20,8 @@ import RequestDetails from "./requests/RequestDetails.tsx";
 import RequestLinesForm from "./requestLines/RequestLineForm.tsx";
 import RequestLineCreate from "./requestLines/RequestLineCreate.tsx";
 import RequestLineEdit from "./requestLines/RequestLineEdit.tsx";
+import SignInPage from "./users/SignIn.tsx";
+import HomePage from "./Home.tsx";
 
 function App() {
   return (
@@ -28,12 +30,13 @@ function App() {
         <Header />
         <main className="container-fluid d-flex ps-0">
           <NavPanel />
+            
           <div className="container-fluid">
             <Routes>
-              <Route path="/" />
+              <Route path="/" element={<HomePage/>} />
               <Route path="vendors" element={<VendorsPage />} />
               <Route path="/vendor/create" element={<VendorCreate />} />
-              <Route path="Signin" element={<SignIn />} />
+              <Route path="Signin" element={<SignInPage />} />
               <Route path={`vendor/edit/:id`} element={<VendorEdit />} />
               <Route path="users" element={<UsersPage />} />
               <Route path="user/create" element={<UserCreate />} />

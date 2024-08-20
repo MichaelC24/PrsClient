@@ -39,7 +39,7 @@ function RequestLinesTable({request, onRemove} : RequestLinesInterface) {
                 <td>{requestline.product?.name}</td>
                 <td>{requestline.product?.price}</td>
                 <td>{requestline.quantity}</td>
-                <td>{request.total}</td>
+                <td>${(requestline.product?.price ?? 0) * (requestline.quantity ?? 0) }</td>
                 <td>
                 <Link to={`requestLine/edit/${requestline.id}`} >
                 <svg className="bi m-2" width="15" height="15" fill="currentColor">
