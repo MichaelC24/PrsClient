@@ -22,10 +22,10 @@ export const requestLinesAPI = {
       .then(checkStatus)
       .then(parseJSON);
   },
-  put(request: RequestLines) {
-    return fetch(`${url}/${request.id}`, {
+  put(requestLine: RequestLines) {
+    return fetch(`${url}/${requestLine.id}`, {
       method: "PUT",
-      body: JSON.stringify(request),
+      body: JSON.stringify(requestLine),
       headers: {
         "Content-Type": "application/json",
       },

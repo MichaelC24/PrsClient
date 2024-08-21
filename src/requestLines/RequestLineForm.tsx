@@ -26,7 +26,7 @@ function RequestLinesForm() {
       let productsData = await productAPI.list();
       setProducts(productsData);
 
-        if (!requestId) {
+        if (!requestLineId) {
       let newRequestLines = new RequestLines({ requestId: requestId });
       return Promise.resolve(newRequestLines);
        }
@@ -37,7 +37,7 @@ function RequestLinesForm() {
     },
   });
 
-  const save: SubmitHandler<RequestLines> = async (requestLines) => {
+  const save: SubmitHandler<RequestLines> = async (requestLines: RequestLines) => {
     try {
       if (requestLines.isNew) {
         await requestLinesAPI.post(requestLines);

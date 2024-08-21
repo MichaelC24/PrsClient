@@ -35,13 +35,13 @@ function RequestLinesTable({request, onRemove} : RequestLinesInterface) {
     <tbody>
         
             {request.requestLines?.map((requestline) => (
-              <tr>
+              <tr key={requestline.id}>
                 <td>{requestline.product?.name}</td>
                 <td>{requestline.product?.price}</td>
                 <td>{requestline.quantity}</td>
                 <td>${(requestline.product?.price ?? 0) * (requestline.quantity ?? 0) }</td>
                 <td>
-                <Link to={`requestLine/edit/${requestline.id}`} >
+                <Link to={`requestLines/edit/${requestline.id}`} >
                 <svg className="bi m-2" width="15" height="15" fill="currentColor">
                     <use xlinkHref={`${bootstrapIcons}#pencil`} />
                   </svg>

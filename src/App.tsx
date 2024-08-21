@@ -49,7 +49,7 @@ function App() {
               <Route path="request/edit/:id" element={<RequestEdit />} />
               <Route path="/request/detail/:id" element={<RequestDetails />} />
               <Route path="/request/detail/:id/requestLines/create" element={<RequestLineCreate/>} />
-              <Route path="/request/detail/:id/requestLine/edit/:lineId" element={<RequestLineEdit/>}/>
+              <Route path="/request/detail/:id/requestLines/edit/:lineId" element={<RequestLineEdit/>}/>
             </Routes>
 
             {/* <h2 className="ms-5 mt-3 ">Purchase Request System</h2>
