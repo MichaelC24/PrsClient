@@ -1,5 +1,5 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Request } from "./Requests";
 import { requestAPI } from "./RequestsAPI";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import RequestLinesTable from "../requestLines/RequestLinesTable";
 import { RequestLines } from "../requestLines/RequestLines";
 import { requestLinesAPI } from "../requestLines/RequestLinesAPI";
 import toast from "react-hot-toast";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 
 function RequestDetails() {
@@ -15,7 +16,8 @@ function RequestDetails() {
   const { id } = useParams<{ id: string }>();
   const requestId = Number(id);
   const [request, setRequest] = useState<Request | undefined>(undefined);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     getId();
   }, []);
@@ -37,6 +39,19 @@ function RequestDetails() {
     }
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Request>({
+    defaultValues: async () => {
+      if (!requestId) {
+        return Promise.resolve(new Request());
+      } else {
+        return await requestAPI.find(requestId);
+      }
+    },
+  });
   async function removeRequestLine(requestLine: RequestLines) {
     if(confirm("Do you really want to delete")) {
       if(requestLine.id){
@@ -49,15 +64,49 @@ function RequestDetails() {
         }
       }
     }
-    
   }
+  const handleReview: SubmitHandler<Request> = async (request: Request)=>{
+  
+  try {
+
+     await requestAPI.review(request)
+    navigate("/request")
+    
+  } catch(error: any) {
+    toast.error(error.message)
+  }}
+
+  const handleApprove: SubmitHandler<Request> = async (request: Request) => {
+    try{
+      await requestAPI.approve(request)
+      navigate("/request")
+    } catch(error: any) {
+      toast.error(error.message)
+    }
+  }
+  const handleReject: SubmitHandler<Request> = async (request: Request) => {
+    try{
+      await requestAPI.reject(request)
+      navigate("/request")
+
+    } catch(error: any) {
+      toast.error(error.message)
+    }
+  }
+    
+  
+  
   if(!request) return null;
   return (
     <>
     <div className="px-4 pb-0 mb-0 mt-3 d-flex justify-content-between">
 
     <h2>Request</h2>
-    <button className="btn btn-primary">Send For Review</button>
+    <div >
+    <button onClick={handleSubmit(handleReview)} className="ms-2 btn btn-primary me-2">Send For Review</button>
+    <button onClick={handleSubmit(handleApprove)} className="btn btn-outline-success me-2">Approve</button>
+    <button onClick={handleSubmit(handleReject)} className="btn btn-outline-danger">Reject</button>
+    </div>
     </div>
     <hr className="mt-2" />
       <div className="container d-flex justify-content-between">

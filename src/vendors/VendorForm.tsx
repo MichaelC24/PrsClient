@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Vendor } from "./Vendors";
 import { vendorAPI } from "./VendorAPI";
+import toast from "react-hot-toast";
 
 function VendorForm() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function VendorForm() {
       }
       navigate("/vendors");
     } catch (error: any) {
-      console.log(error);
+     toast.error(error.message)
     }
   };
 

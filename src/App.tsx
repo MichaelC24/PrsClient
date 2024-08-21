@@ -22,14 +22,29 @@ import RequestLineCreate from "./requestLines/RequestLineCreate.tsx";
 import RequestLineEdit from "./requestLines/RequestLineEdit.tsx";
 import SignInPage from "./users/SignIn.tsx";
 import HomePage from "./Home.tsx";
+import { useState } from "react";
+import { User } from "./users/Users.ts";
+import { UserContext } from "./users/UserContext.ts";
+
+function getPersistedUser() {
+  const userAsJson = localStorage.getItem("user")
+  if(!userAsJson) return undefined;
+  const user = JSON.parse(userAsJson);
+  return user;
+}
 
 function App() {
+  const [user, setUser] = useState<User | undefined>(getPersistedUser())
   return (
     <Router>
-      <>
+      
         <Header />
+        <UserContext.Provider value={{user, setUser}}>
+
         <main className="container-fluid d-flex ps-0">
           <NavPanel />
+            <header user={user} />
+
             
           <div className="container-fluid">
             <Routes>
@@ -55,14 +70,15 @@ function App() {
             {/* <h2 className="ms-5 mt-3 ">Purchase Request System</h2>
           <hr />
           <div className="ms-4">
-            <h6 className="m-4 text-secondary fs-6 fst-normal">
-              This application will allow you to make purchase requests.
-            </h6>
+          <h6 className="m-4 text-secondary fs-6 fst-normal">
+          This application will allow you to make purchase requests.
+          </h6>
           </div> */}
           </div>
         </main>
-      </>
+          </UserContext.Provider>
     </Router>
+      
   );
 }
 
