@@ -33,8 +33,8 @@ function signOut() {
             style={{ width: "3rem", height: "3rem" }}
             className="d-flex  bg-primary-subtle fs-5 text-secondary align-items-center justify-content-center rounded-circle me-2"
           >
-            {user?.firstname[0]}
-            {user?.lastname[0]}
+             {user?.firstname?.substring(0, 1)}
+             {user?.lastname?.substring(0, 1)}
           </span>
           {user?.firstname} {user?.lastname}
         </summary>

@@ -12,7 +12,7 @@ export class User {
   get isNew(): boolean {
     return this.id === undefined;
   }
-
+ 
   constructor(initializer?: any) {
     if (!initializer) return;
 

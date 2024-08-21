@@ -7,12 +7,14 @@ import { requestAPI } from "./RequestsAPI";
 import { useState } from "react";
 import { User } from "../users/Users";
 import { userAPI } from "../users/UsersAPI";
+import { useUserContext } from "../users/UserContext";
 
 function RequestForm() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const requestId = Number(id);
-  const [users, setUser] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const{user} = useUserContext();
 
   const {
     register,
@@ -21,10 +23,10 @@ function RequestForm() {
   } = useForm<Request>({
     defaultValues: async () => {
       let userList = await userAPI.list();
-      setUser(userList);
+      setUsers(userList);
 
       if (!requestId) {
-        return Promise.resolve(new Request());
+        return Promise.resolve(new Request({userId: user?.id}));
       } else {
         return await requestAPI.find(requestId);
       }
@@ -142,7 +144,8 @@ function RequestForm() {
             <select
               id="user"
               {...register("userId", { required: "Requested by is Required" })}
-              className={`form-select ${errors.userId && "is-invalid"}`}
+              className={`form-select ${errors.userId && "is-invalid"}`} 
+              disabled
             >
               <option value="">Select...</option>
               {users.map((user) => (

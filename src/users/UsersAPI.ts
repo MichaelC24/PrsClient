@@ -37,13 +37,11 @@ export const userAPI = {
   },
   findAccount(username: string, password: string): Promise<User> {
     return (
-      fetch(`${url}?username=${username}&password=${password}`)
+      fetch(`${url}/${username}/${password}`)
         .then(checkStatus)
         .then(parseJSON)
-        //delete the next three lineswhen using PRS API because it will only return one user not an array with one user
-        .then((users) => {
-          return users[0] ?? undefined;
-        })
+        
+       
     );
   },
 };

@@ -38,12 +38,11 @@ function App() {
   return (
     <Router>
       
-        <Header />
         <UserContext.Provider value={{user, setUser}}>
-
+        <Header />
         <main className="container-fluid d-flex ps-0">
           <NavPanel />
-            <header user={user} />
+             
 
             
           <div className="container-fluid">

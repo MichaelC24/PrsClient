@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 import { User } from "./Users";
 
 export interface UserContextType {
@@ -6,18 +6,12 @@ export interface UserContextType {
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
 }
 
-// Default context value
-const defaultContextValue: UserContextType = {
-  user: undefined,
-  setUser: () => {}, // No-op function
-};
-
-export const UserContext = createContext<UserContextType>(defaultContextValue);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function useUserContext(): UserContextType {
   const userContext = useContext(UserContext);
   if (userContext === undefined) {
-    throw new Error("UserContext must be used within a UserContext.Provider");
+    throw new Error("context not found");
   }
   return userContext;
 }

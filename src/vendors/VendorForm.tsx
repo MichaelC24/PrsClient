@@ -29,9 +29,12 @@ function VendorForm() {
     try {
       if (vendor.isNew) {
         await vendorAPI.post(vendor);
+        
       } else {
         await vendorAPI.put(vendor);
+        
       }
+      toast.success("Vedor Saved")
       navigate("/vendors");
     } catch (error: any) {
      toast.error(error.message)

@@ -7,6 +7,7 @@ import { productAPI } from "./ProductsAPI";
 import { useState } from "react";
 import { Vendor } from "../vendors/Vendors";
 import { vendorAPI } from "../vendors/VendorAPI";
+import toast from "react-hot-toast";
 
 function ProductForm() {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ function ProductForm() {
       } else {
         await productAPI.put(product);
       }
+      toast.success("Product Saved")
       navigate("/products");
     } catch (error: any) {
       console.log(error);
