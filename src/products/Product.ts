@@ -1,10 +1,10 @@
-import { Vendor } from "../vendors/Vendors";
+import { Vendor } from "../vendors/Vendor";
 
 export class Product {
   id: number | undefined = undefined;
   partNbr = "";
   name = "";
-  price: number | undefined
+  price: number | undefined;
   unit = "";
   photoPath = "";
   vendorId: number | undefined;

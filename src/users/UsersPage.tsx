@@ -7,7 +7,7 @@ function VendorsPage() {
     <>
       
 
-      <hr />
+      
       <div className="mt-1">
         <UsersList />
       </div>

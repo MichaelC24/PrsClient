@@ -2,7 +2,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Vendor } from "./Vendors";
+import { Vendor } from "./Vendor";
 import { vendorAPI } from "./VendorAPI";
 import toast from "react-hot-toast";
 
@@ -29,21 +29,18 @@ function VendorForm() {
     try {
       if (vendor.isNew) {
         await vendorAPI.post(vendor);
-        
       } else {
         await vendorAPI.put(vendor);
-        
       }
-      toast.success("Vedor Saved")
+      toast.success("Vendor Saved");
       navigate("/vendors");
     } catch (error: any) {
-     toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
   return (
     <div className="container-fluid">
-      
       <div>
         <form className="row g-md-4 needs-validation is-invalid" onSubmit={handleSubmit(save)} noValidate>
           <div className="col-md-3">
@@ -58,7 +55,6 @@ function VendorForm() {
               })}
               className={`form-control ${errors.code && "is-invalid"} `}
               placeholder="Enter short vendor code"
-              
             />
             <div className="invalid-feedback ">{errors?.code?.message}</div>
           </div>
@@ -72,7 +68,7 @@ function VendorForm() {
               {...register("name", { required: "name is required" })}
               placeholder="Enter Vendor Name"
               className={`form-control ${errors.name && "is-invalid"}`}
-              />
+            />
             <div className="invalid-feedback">{errors?.name?.message}</div>
           </div>
           <div className="col-9">
@@ -81,7 +77,7 @@ function VendorForm() {
             </label>
             <input
               type="text"
-            //   className="form-control is-invalid"
+              //   className="form-control is-invalid"
               id="inputAddress"
               {...register("address", {
                 required: "Address is required",
@@ -97,7 +93,7 @@ function VendorForm() {
             </label>
             <input
               type="text"
-            //   className="form-control is-invalid"
+              //   className="form-control is-invalid"
               id="city"
               {...register("city", { required: "City is required" })}
               placeholder="Enter city"
@@ -111,10 +107,9 @@ function VendorForm() {
             </label>
             <select
               id="inputState"
-            //   className="form-select is-invalid"
+              //   className="form-select is-invalid"
               {...register("state", { required: "State Required" })}
-                className={`form-control ${errors.address && "is-invalid"}`}
-              >
+              className={`form-control ${errors.address && "is-invalid"}`}>
               <option value="">State...</option>
               <option value="1">OH</option>
               <option value="2">KY</option>
@@ -127,28 +122,38 @@ function VendorForm() {
             </label>
             <input
               type="text"
-              {...register("zip", { required: "Zipcode is Required"})}
+              {...register("zip", { required: "Zipcode is Required" })}
               className={`form-control ${errors.zip && "is-invalid"}`}
-
               id="inputZip"
               placeholder="Zip Code"
-              
             />
             <div className="invalid-feedback">{errors?.zip?.message}</div>
           </div>
           <div className="col-md-4">
             <label htmlFor="phone">Phone</label>
-            <input type="text" {...register("phone")} className="form-control" placeholder="Enter Phone Number" id="phone" />
+            <input
+              type="text"
+              {...register("phone")}
+              className="form-control"
+              placeholder="Enter Phone Number"
+              id="phone"
+            />
           </div>
           <div className="col-md-4">
             <label htmlFor="email">Email</label>
-            <input type="text" {...register("email")}className="form-control" placeholder="Enter Email Address" id="email" />
+            <input
+              type="text"
+              {...register("email")}
+              className="form-control"
+              placeholder="Enter Email Address"
+              id="email"
+            />
           </div>
           <div className=" offset-7">
-            <NavLink to="/vendors"  className="btn btn-outline-primary me-2 form-check">
+            <NavLink to="/vendors" className="btn btn-outline-primary me-2 form-check">
               Cancel
             </NavLink>
-            <button  className="btn btn-primary form-check">
+            <button className="btn btn-primary form-check">
               <svg className="me-2" width={15} height={23} fill="currentColor">
                 <use xlinkHref="../node_modules/bootstrap-icons/bootstrap-icons.svg#save" />
               </svg>

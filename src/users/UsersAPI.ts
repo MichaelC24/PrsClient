@@ -1,4 +1,4 @@
-import { User } from "./Users";
+import { User } from "./User";
 import { BASE_URL, checkStatus, delay, parseJSON } from "../utility/fetchUtilities";
 
 const url = `${BASE_URL}/Users`;
@@ -36,12 +36,6 @@ export const userAPI = {
     return fetch(`${url}/${id}`, { method: "DELETE" }).then(checkStatus);
   },
   findAccount(username: string, password: string): Promise<User> {
-    return (
-      fetch(`${url}/${username}/${password}`)
-        .then(checkStatus)
-        .then(parseJSON)
-        
-       
-    );
+    return fetch(`${url}/${username}/${password}`).then(checkStatus).then(parseJSON);
   },
 };

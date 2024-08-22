@@ -4,7 +4,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { User } from "./Users";
+import { User } from "./User";
 import { userAPI } from "./UsersAPI";
 import { useUserContext } from "./UserContext";
 
@@ -50,6 +50,8 @@ function SignInPage() {
       navigate("/");
     } catch (error: any) {
       toast.error("Unsuccessful sign in. Please try again.");
+      // console.log("error here");
+      
     }
   };
 

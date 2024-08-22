@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Vendor } from "./Vendors";
+import { Vendor } from "./Vendor";
 import { vendorAPI } from "./VendorAPI";
 import VendorCard from "./VendorCard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-import {toast} from 'react-hot-toast'
+import { toast } from "react-hot-toast";
 
 function VendorsPage() {
   const [vendors, setVendor] = useState<Vendor[]>([]);

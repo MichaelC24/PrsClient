@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { User } from "./Users";
+import { User } from "./User";
 import { userAPI } from "./UsersAPI";
 import UserCard from "./UsersCard";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,7 +16,7 @@ function UsersPage() {
       const data = await userAPI.list();
       setUser(data);
     } catch (error: any) {
-      console.log("error");
+      toast.error(error.message)
     } finally {
       setBusy(false);
     }

@@ -1,4 +1,4 @@
-import { Vendor } from "./Vendors";
+import { Vendor } from "./Vendor";
 import { BASE_URL, checkStatus, delay, parseJSON } from "../utility/fetchUtilities";
 
 const url = `${BASE_URL}/Vendors`;

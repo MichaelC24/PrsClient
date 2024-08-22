@@ -1,6 +1,6 @@
 import { RequestLines } from "../requestLines/RequestLines";
-import { User } from "../users/Users";
-import { Vendor } from "../vendors/Vendors";
+import { User } from "../users/User";
+import { Vendor } from "../vendors/Vendor";
 
 export class Request {
   id: number | undefined = undefined;
@@ -30,6 +30,6 @@ export class Request {
     if (initializer.status) this.status = initializer.status;
     if (initializer.total) this.total = initializer.total;
     if (initializer.userId) this.userId = initializer.userId;
-    if(initializer.requestLines) this.requestLines = initializer.requestLines;
+    if (initializer.requestLines) this.requestLines = initializer.requestLines;
   }
 }

@@ -2,8 +2,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { User } from "./Users";
+import { User } from "./User";
 import { userAPI } from "./UsersAPI";
+import toast from "react-hot-toast";
 
 function UserForm() {
   const navigate = useNavigate();
@@ -31,9 +32,10 @@ function UserForm() {
       } else {
         await userAPI.put(user);
       }
+      toast.success("User Saved")
       navigate("/users");
     } catch (error: any) {
-      console.log(error);
+      toast.error(error.message)
     }
   };
 
@@ -61,7 +63,8 @@ function UserForm() {
               Password
             </label>
             <input
-              type="text"
+              type="password"
+              
               id="password"
               {...register("password", { required: "password is required" })}
               placeholder="Enter Password"
@@ -135,22 +138,15 @@ function UserForm() {
             />
           </div>
           <div className="mb-3 w-50">
-            <label  className="form-label">
-              Role
-            </label>
+            <label className="form-label">Role</label>
             <br />
             <div className="form-check form-check-inline">
               <input type="checkbox" className="form-check-input" {...register("isReviewer")} />
-              <label  className="form-check-label">
-                Reviewer
-              </label>
+              <label className="form-check-label">Reviewer</label>
             </div>
             <div className="form-check form-check-inline">
-              <input type="checkbox" className="form-check-input"  {...register("isAdmin")} />
-              <label  className="form-check-label">
-                Admin
-              </label>
-
+              <input type="checkbox" className="form-check-input" {...register("isAdmin")} />
+              <label className="form-check-label">Admin</label>
             </div>
           </div>
           <div className=" offset-7">
@@ -164,7 +160,6 @@ function UserForm() {
               Save User
             </button>
           </div>
-          
         </form>
       </div>
     </div>

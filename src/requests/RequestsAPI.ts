@@ -1,4 +1,4 @@
-import { Request } from "./Requests";
+import { Request } from "./Request";
 import { BASE_URL, checkStatus, delay, parseJSON } from "../utility/fetchUtilities";
 
 const url = `${BASE_URL}/Requests`;
@@ -28,40 +28,36 @@ export const requestAPI = {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then(checkStatus)
-      
+    }).then(checkStatus);
   },
   delete(id: number) {
     return fetch(`${url}/${id}`, { method: "DELETE" }).then(checkStatus);
   },
   review(request: Request) {
     return fetch(`${url}/review/${request.id}`, {
-      method: "PUT", 
+      method: "PUT",
       body: JSON.stringify(request),
-      headers :{
-        "Content-Type": "application/json"
+      headers: {
+        "Content-Type": "application/json",
       },
-    })
-    .then(checkStatus)
+    }).then(checkStatus);
   },
   approve(request: Request) {
     return fetch(`${url}/approve/${request.id}`, {
-      method: "PUT", 
+      method: "PUT",
       body: JSON.stringify(request),
-      headers :{
-        "Content-Type": "application/json"
+      headers: {
+        "Content-Type": "application/json",
       },
-    })
-    .then(checkStatus)
+    }).then(checkStatus);
   },
-  reject(request: Request) { 
+  reject(request: Request) {
     return fetch(`${url}/reject/${request.id}`, {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
-        "Content-Type" :"application/json"
+        "Content-Type": "application/json",
       },
-    })
-  }
+    });
+  },
 };

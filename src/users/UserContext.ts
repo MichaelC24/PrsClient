@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { User } from "./Users";
+import { User } from "./User";
 
 export interface UserContextType {
   user: User | undefined;

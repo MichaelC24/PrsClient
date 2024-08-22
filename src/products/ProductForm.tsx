@@ -2,10 +2,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Product } from "./Products";
+import { Product } from "./Product";
 import { productAPI } from "./ProductsAPI";
 import { useState } from "react";
-import { Vendor } from "../vendors/Vendors";
+import { Vendor } from "../vendors/Vendor";
 import { vendorAPI } from "../vendors/VendorAPI";
 import toast from "react-hot-toast";
 
@@ -13,7 +13,7 @@ function ProductForm() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const productId = Number(id);
-  const [vendors, setVendor] = useState<Vendor[]>([])
+  const [vendors, setVendor] = useState<Vendor[]>([]);
 
   const {
     register,
@@ -39,10 +39,10 @@ function ProductForm() {
       } else {
         await productAPI.put(product);
       }
-      toast.success("Product Saved")
+      toast.success("Product Saved");
       navigate("/products");
     } catch (error: any) {
-      console.log(error);
+      toast.error(error.message)
     }
   };
 
@@ -83,7 +83,8 @@ function ProductForm() {
               Price
             </label>
             <input
-              type="text"
+              type="number"
+              
               //   className="form-control is-invalid"
               id="inputAddress"
               {...register("price", {
@@ -117,13 +118,12 @@ function ProductForm() {
               //   className="form-select is-invalid"
               {...register("vendorId", { required: "Vendor is Required" })}
               className={`form-select ${errors.vendorId && "is-invalid"}`}>
-                <option value="">Select...</option>
-                {vendors.map((vendor) => (
-                  <option key={vendor.id} value={vendor.id}>
-                    {vendor.name}
-                  </option>
-                ))}
-             
+              <option value="">Select...</option>
+              {vendors.map((vendor) => (
+                <option key={vendor.id} value={vendor.id}>
+                  {vendor.name}
+                </option>
+              ))}
             </select>
             <div className="invalid-feedback">{errors?.vendorId?.message}</div>
           </div>

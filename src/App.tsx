@@ -23,31 +23,42 @@ import RequestLineEdit from "./requestLines/RequestLineEdit.tsx";
 import SignInPage from "./users/SignIn.tsx";
 import HomePage from "./Home.tsx";
 import { useState } from "react";
-import { User } from "./users/Users.ts";
+import { User } from "./users/User.ts";
 import { UserContext } from "./users/UserContext.ts";
+import { Toaster } from "react-hot-toast";
 
 function getPersistedUser() {
-  const userAsJson = localStorage.getItem("user")
-  if(!userAsJson) return undefined;
+  const userAsJson = localStorage.getItem("user");
+  if (!userAsJson) return undefined;
   const user = JSON.parse(userAsJson);
   return user;
 }
 
 function App() {
-  const [user, setUser] = useState<User | undefined>(getPersistedUser())
+  const [user, setUser] = useState<User | undefined>(getPersistedUser());
   return (
     <Router>
-      
-        <UserContext.Provider value={{user, setUser}}>
+      <UserContext.Provider value={{ user, setUser }}>
         <Header />
         <main className="container-fluid d-flex ps-0">
+        <Toaster
+            toastOptions={{
+              success: {
+                iconTheme: {
+                  primary: "#0d6efd",
+                  secondary: "white",
+                },
+              },
+              style: {
+                maxWidth: 500,
+              },
+            }}
+          />
           <NavPanel />
-             
 
-            
           <div className="container-fluid">
             <Routes>
-              <Route path="/" element={<HomePage/>} />
+              <Route path="/" element={<HomePage />} />
               <Route path="vendors" element={<VendorsPage />} />
               <Route path="/vendor/create" element={<VendorCreate />} />
               <Route path="Signin" element={<SignInPage />} />
@@ -62,8 +73,8 @@ function App() {
               <Route path="requests/create" element={<RequestCreate />} />
               <Route path="request/edit/:id" element={<RequestEdit />} />
               <Route path="/request/detail/:id" element={<RequestDetails />} />
-              <Route path="/request/detail/:id/requestLines/create" element={<RequestLineCreate/>} />
-              <Route path="/request/detail/:id/requestLines/edit/:lineId" element={<RequestLineEdit/>}/>
+              <Route path="/request/detail/:id/requestLines/create" element={<RequestLineCreate />} />
+              <Route path="/request/detail/:id/requestLines/edit/:lineId" element={<RequestLineEdit />} />
             </Routes>
 
             {/* <h2 className="ms-5 mt-3 ">Purchase Request System</h2>
@@ -75,9 +86,8 @@ function App() {
           </div> */}
           </div>
         </main>
-          </UserContext.Provider>
+      </UserContext.Provider>
     </Router>
-      
   );
 }
 

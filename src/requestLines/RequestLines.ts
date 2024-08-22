@@ -1,16 +1,15 @@
-import { Product } from "../products/Products";
-import { User } from "../users/Users";
-import { Vendor } from "../vendors/Vendors";
+import { Product } from "../products/Product";
+import { User } from "../users/User";
+import { Vendor } from "../vendors/Vendor";
 
 export class RequestLines {
   id: number | undefined = undefined;
   requestId: number | undefined;
   productId: number | undefined;
-  quantity: number |undefined;
+  quantity: number | undefined;
 
-  request : Request | undefined;
+  request: Request | undefined;
   product: Product | undefined;
-
 
   user: User | undefined;
 
@@ -25,6 +24,5 @@ export class RequestLines {
     if (initializer.requestId) this.requestId = initializer.requestId;
     if (initializer.productId) this.productId = initializer.productId;
     if (initializer.quantity) this.quantity = initializer.quantity;
-   
   }
 }

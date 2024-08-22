@@ -4,7 +4,7 @@ import { RequestLines } from "./RequestLines";
 import toast from "react-hot-toast";
 import { requestLinesAPI } from "./RequestLinesAPI";
 import { useState } from "react";
-import { Product } from "../products/Products";
+import { Product } from "../products/Product";
 import { productAPI } from "../products/ProductsAPI";
 // import { Product } from "../products/Product";
 // import { productAPI } from "../products/ProductAPI";
@@ -12,7 +12,7 @@ import { productAPI } from "../products/ProductsAPI";
 function RequestLinesForm() {
   const navigate = useNavigate();
   //   let { requestId: requestLinesIdAsString } = useParams<{ requestLinesId: string }>();
-  let { id: requestIdAsString, lineId: lineIdAsString } = useParams<{ id: string, lineId:string }>();
+  let { id: requestIdAsString, lineId: lineIdAsString } = useParams<{ id: string; lineId: string }>();
   let requestLineId = Number(lineIdAsString);
   let requestId = Number(requestIdAsString);
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,14 +26,12 @@ function RequestLinesForm() {
       let productsData = await productAPI.list();
       setProducts(productsData);
 
-        if (!requestLineId) {
-      let newRequestLines = new RequestLines({ requestId: requestId });
-      return Promise.resolve(newRequestLines);
-       }
-      else {
-         return await requestLinesAPI.find(requestLineId);
-          
-        }
+      if (!requestLineId) {
+        let newRequestLines = new RequestLines({ requestId: requestId });
+        return Promise.resolve(newRequestLines);
+      } else {
+        return await requestLinesAPI.find(requestLineId);
+      }
     },
   });
 
@@ -45,7 +43,7 @@ function RequestLinesForm() {
         await requestLinesAPI.put(requestLines);
       }
       //   navigate(`/request/detail/${requestId}?lastUpdated=${Date.now()}`);
-      navigate(`/request/detail/${requestId}`)
+      navigate(`/request/detail/${requestId}`);
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -85,7 +83,7 @@ function RequestLinesForm() {
           type="text"
           id="quantity"
         />
-      <div className="invalid-feedback">{errors?.quantity?.message}</div>
+        <div className="invalid-feedback">{errors?.quantity?.message}</div>
       </div>
 
       <div className="d-flex gap-2">

@@ -1,4 +1,4 @@
-import { Product } from "./Products";
+import { Product } from "./Product";
 import { BASE_URL, checkStatus, delay, parseJSON } from "../utility/fetchUtilities";
 
 const url = `${BASE_URL}/Products`;

@@ -2,10 +2,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Request } from "./Requests";
+import { Request } from "./Request";
 import { requestAPI } from "./RequestsAPI";
 import { useState } from "react";
-import { User } from "../users/Users";
+import { User } from "../users/User";
 import { userAPI } from "../users/UsersAPI";
 import { useUserContext } from "../users/UserContext";
 
@@ -14,7 +14,7 @@ function RequestForm() {
   const { id } = useParams<{ id: string }>();
   const requestId = Number(id);
   const [users, setUsers] = useState<User[]>([]);
-  const{user} = useUserContext();
+  const { user } = useUserContext();
 
   const {
     register,
@@ -26,7 +26,7 @@ function RequestForm() {
       setUsers(userList);
 
       if (!requestId) {
-        return Promise.resolve(new Request({userId: user?.id}));
+        return Promise.resolve(new Request({ userId: user?.id }));
       } else {
         return await requestAPI.find(requestId);
       }
@@ -40,14 +40,10 @@ function RequestForm() {
         savedRequest = await requestAPI.post(request);
         navigate(`/request/detail/${savedRequest.id}`);
       } else {
-        
         savedRequest = await requestAPI.put(request);
-        navigate(`/request/detail/${requestId}`)
-        
-
-      } 
+        navigate(`/request/detail/${requestId}`);
+      }
       console.log(savedRequest);
-      
     } catch (error: any) {
       console.log(error);
     }
@@ -105,18 +101,16 @@ function RequestForm() {
             <select
               id="status"
               {...register("status", { required: "Status Required" })}
-              defaultValue="NEW" 
-              
+              defaultValue="NEW"
               disabled
-              className={`form-select ${errors.status && "is-invalid"}`}
-            >
+              className={`form-select ${errors.status && "is-invalid"}`}>
               <option value="NEW">NEW</option>
               <option value="REVIEW">REVIEW</option>
               <option value="APPROVED">APPROVED</option>
               <option value="REJECTED">REJECTED</option>
             </select>
             <div className="invalid-feedback">{errors?.status?.message}</div>
-          {/* {(status==="REJECTED") && (
+            {/* {(status==="REJECTED") && (
           <div className="col-md">
               <label htmlFor="inputAddress" className="form-label">
                 Rejection
@@ -136,7 +130,7 @@ function RequestForm() {
             </div>
             
           )} */}
-            </div>
+          </div>
           <div className="col-md-4">
             <label htmlFor="user" className="form-label">
               Requested By
@@ -144,9 +138,8 @@ function RequestForm() {
             <select
               id="user"
               {...register("userId", { required: "Requested by is Required" })}
-              className={`form-select ${errors.userId && "is-invalid"}`} 
-              disabled
-            >
+              className={`form-select ${errors.userId && "is-invalid"}`}
+              disabled>
               <option value="">Select...</option>
               {users.map((user) => (
                 <option key={user.id} value={user.id}>

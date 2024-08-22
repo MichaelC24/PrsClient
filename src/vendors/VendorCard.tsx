@@ -1,4 +1,4 @@
-import { Vendor } from "./Vendors";
+import { Vendor } from "./Vendor";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Dropdown } from "react-bootstrap";

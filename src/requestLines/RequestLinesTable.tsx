@@ -1,5 +1,5 @@
 import { RequestLines } from "./RequestLines";
-import { Request } from "../requests/Requests";
+import { Request } from "../requests/Request";
 import { Link, NavLink } from "react-router-dom";
 import { SyntheticEvent } from "react";
 import bootstrapIcons from "bootstrap-icons/bootstrap-icons.svg";
